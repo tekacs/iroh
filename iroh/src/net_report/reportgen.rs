@@ -983,10 +983,9 @@ mod tests {
         let quic_client = iroh_relay::quic::QuicClient::new(ep.clone(), client_config);
         let dns_resolver = DnsResolver::default();
 
-        let (report, conn) =
-            super::super::run_probe_v4(relay, quic_client, dns_resolver, CancellationToken::new())
-                .await
-                .unwrap();
+        let (report, conn) = super::super::run_probe_v4(relay, quic_client, dns_resolver)
+            .await
+            .unwrap();
 
         assert_eq!(report.addr, client_addr);
         drop(conn);
